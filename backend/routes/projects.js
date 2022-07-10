@@ -8,5 +8,9 @@ const {
 } = require("../controllers/project");
 
 Router.get("/", getProjects);
+Router.get("/:id", getProject);
+Router.post("/", addProject);
+Router.patch("/:id", updateProject);
+Router.delete("/:id", deleteProject);
 
 module.exports = Router;

@@ -14,6 +14,7 @@ const ProjectSchema = new mongoose.Schema(
 
     liveDemo: {
       type: String,
+      required: [true, "Please give the live demo link of your project"],
     },
 
     repoLink: {
