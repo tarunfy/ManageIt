@@ -36,3 +36,39 @@
   font-family: "Wotfard-Thin";
   src: url(./assets/fonts/Wotfard-Thin.otf);
 }
+
+#blurry-gradient {
+  position: fixed;
+  top: -20%;
+  left: 20%;
+  transform: translate(-5%, -70%);
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(100px);
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgb(145, 145, 220),
+    rgba(145, 145, 220, 0)
+  );
+  opacity: 0.5;
+  z-index: 10;
+}
+
+#blurry-gradient-2 {
+  position: fixed;
+  top: 60%;
+  right: -15%;
+  transform: translate(20%, -50%);
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(100px);
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgb(163, 216, 215),
+    rgba(163, 216, 215, 0)
+  );
+  opacity: 0.5;
+  z-index: 10;
+}
