@@ -1,0 +1,39 @@
+import Click from "../assets/sounds/click.mp3";
+
+const sound = new Audio();
+
+sound.src = Click;
+
+const Button = ({ name, logo }) => {
+  const handleClick = () => {
+    sound.play();
+  };
+
+  return (
+    <div>
+      <button
+        onClick={handleClick}
+        className={`group border-none p-0 cursor-pointer rounded-lg ${
+          name == "Google" ? "bg-blue-700" : "bg-slate-800"
+        } ${
+          name == "Google" ? "hover:bg-blue-800" : "hover:bg-slate-900"
+        } transition-all duration-300 ease-in-out outline-offset-4`}
+      >
+        <span
+          className={`flex items-center group-active:-translate-y-[2px] py-[12px] px-[40px] text-xl ${
+            name == "Google" ? "bg-blue-500" : "bg-slate-600"
+          } ${
+            name == "Google"
+              ? "group-hover:bg-blue-600"
+              : "group-hover:bg-slate-700"
+          }   transition-all duration-300 ease-in-out  text-white/90 group-hover:text-white hover:-translate-y-[8px] -translate-y-[5px] rounded-lg font-Wotfard-Regular`}
+        >
+          <img src={logo} alt={name} className="h-6 w-6 mr-2" /> Sign in with{" "}
+          {name}
+        </span>
+      </button>
+    </div>
+  );
+};
+
+export default Button;

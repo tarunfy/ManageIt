@@ -1,14 +1,31 @@
-import Github from "../assets/images/github.svg";
+import Navbar from "../components/Navbar";
+import Hero from "../assets/images/Hero.svg";
+import Arrow from "../assets/images/arrow.svg";
 
 const Home = () => {
   return (
-    <div className="flex h-screen justify-center items-center">
-      <button className="group border-none p-0 cursor-pointer rounded-lg bg-slate-800 hover:bg-slate-900 transition-all duration-300 ease-in-out outline-offset-4">
-        <span className="flex items-center group-active:-translate-y-[2px] py-[12px] px-[42px] text-2xl bg-slate-600 transition-all duration-300 ease-in-out  text-white/90 group-hover:text-white group-hover:bg-slate-700 hover:-translate-y-[8px] -translate-y-[5px] rounded-lg">
-          <img src={Github} alt="" className="h-8 w-8 mr-2" /> Sign in with
-          GitHub
-        </span>
-      </button>
+    <div className="px-40 py-10 space-y-28 bg-primary-800 h-screen text-white">
+      <Navbar />
+      <div className="flex items-end justify-between">
+        <div className="space-y-6">
+          <h1 className="text-[4rem]  leading-[5rem] font-Wotfard-SemiBold">
+            The most versatile project management platform.
+          </h1>
+          <p className="text-xl text-slate-50 font-Wotfard-Thin max-w-xl">
+            With comprehensive project management tools, ManageIt is perfect for
+            all your project scheduling needs.
+          </p>
+          <button className="px-6 py-4 text-lg font-Wotfard-Regular rounded-full bg-[#7C7DD6] tracking-widest uppercase relative">
+            Manage Now
+            <img
+              src={Arrow}
+              alt="arrow"
+              className="absolute bottom-8 -right-32 w-28 animate-pulse"
+            />
+          </button>
+        </div>
+        <img src={Hero} alt="Hero" className="h-[28rem] w-[28rem]" />
+      </div>
     </div>
   );
 };

@@ -3,10 +3,36 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Wotfard-Bold";
+  font-family: "Wotfard-Medium";
   src: url(./assets/fonts/Wotfard-Medium.otf);
 }
 
-body {
-  font-family: "Wotfard-Bold", sans-serif;
+@font-face {
+  font-family: "Wotfard-Bold";
+  src: url(./assets/fonts/Wotfard-Bold.otf);
+}
+
+@font-face {
+  font-family: "Wotfard-Light";
+  src: url(./assets/fonts/Wotfard-Light.otf);
+}
+
+@font-face {
+  font-family: "Wotfard-ExtraLight";
+  src: url(./assets/fonts/Wotfard-ExtraLight.otf);
+}
+
+@font-face {
+  font-family: "Wotfard-Regular";
+  src: url(./assets/fonts/Wotfard-Regular.otf);
+}
+
+@font-face {
+  font-family: "Wotfard-SemiBold";
+  src: url(./assets/fonts/Wotfard-SemiBold.otf);
+}
+
+@font-face {
+  font-family: "Wotfard-Thin";
+  src: url(./assets/fonts/Wotfard-Thin.otf);
 }
