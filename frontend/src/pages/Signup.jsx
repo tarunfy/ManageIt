@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import nProgress from "nprogress";
 //components
 import Button from "../components/3DButton";
 //images
@@ -17,12 +18,16 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      toast.error("😐 Passwords do not match");
-      return;
-    }
+    nProgress.start();
     if (password.length < 8) {
       toast.error("🫤 Password should be at least 8 characters long");
+      nProgress.done();
+
+      return;
+    }
+    if (password !== confirmPassword) {
+      toast.error("😐 Passwords do not match");
+      nProgress.done();
       return;
     }
     const userData = {
@@ -33,6 +38,7 @@ const Signup = () => {
     setEmail("");
     setPassword("");
     setConfirmPassword("");
+    nProgress.done();
   };
 
   return (
@@ -47,7 +53,7 @@ const Signup = () => {
         </div>
 
         <div className="flex flex-col items-center justify-center h-full z-30">
-          <form className="px-10 py-6 bg-white shadow-lg rounded-lg space-y-4 w-full">
+          <form className="px-10 py-6 bg-white  shadow-custom  rounded-lg space-y-4 w-full">
             <div>
               <img src={logo} alt="logo" className="mx-auto my-0 h-20 w-20" />
               <h1 className="text-[2.5rem] text-primary-700 text-center font-Wotfard-Medium">
@@ -64,7 +70,7 @@ const Signup = () => {
                 type="email"
                 autoComplete="off"
                 id="email"
-                className="bg-slate-100 text-base  p-2 w-full focus:outline-none rounded-md focus:outline-[#012FCE]"
+                className="bg-slate-100 border-[1px] border-slate-200 text-base font-Wotfard-Regular p-2 w-full focus:outline-none rounded-md"
               />
             </div>
             <div className="flex flex-col items-start space-y-1">
@@ -82,7 +88,7 @@ const Signup = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 id="password"
-                className="bg-slate-100 text-base  p-2 w-full focus:outline-none rounded-md focus:outline-[#012FCE]"
+                className="bg-slate-100  text-base  p-2 w-full  rounded-md border-[1px] border-slate-200 focus:outline-none"
               />
             </div>
             <div className="flex flex-col items-start space-y-1">
@@ -97,7 +103,7 @@ const Signup = () => {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 type="password"
                 id="confirm_password"
-                className="bg-slate-100 text-base  p-2 w-full focus:outline-none rounded-md focus:outline-[#012FCE]"
+                className="bg-slate-100 text-base  p-2 w-full rounded-md border-[1px] border-slate-200 focus:outline-none"
               />
             </div>
 
@@ -105,7 +111,7 @@ const Signup = () => {
               type="submit"
               disabled={!email || !password || !confirmPassword}
               onClick={handleSubmit}
-              className="px-4 py-2 disabled:bg-primary-400 disabled:text-white/50 disabled:cursor-not-allowed bg-primary-500 text-white font-Wotfard-Medium text-base rounded-md outline-offset-4 hover:shadow-primary-400 hover:shadow-md transition-shadow"
+              className="px-4 py-2 disabled:bg-primary-400 disabled:text-white/50 disabled:cursor-not-allowed bg-primary-500 text-white font-Wotfard-Medium text-base rounded-md outline-offset-4 hover:shadow-primary-300 disabled:shadow-none hover:shadow-md transition-shadow"
             >
               Sign up
             </button>
@@ -134,7 +140,7 @@ const Signup = () => {
         </div>
       </div>
       <ToastContainer
-        position="top-right"
+        position="bottom-right"
         autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
