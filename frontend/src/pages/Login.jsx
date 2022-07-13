@@ -44,7 +44,7 @@ const Login = () => {
             <div>
               <img src={logo} alt="logo" className="mx-auto my-0 h-20 w-20" />
               <h1 className="text-[2.5rem] text-primary-700 text-center font-Wotfard-Medium">
-                Log in to your account
+                Login to your account
               </h1>
             </div>
             <div className="flex flex-col items-start space-y-1">
