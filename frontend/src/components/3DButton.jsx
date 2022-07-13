@@ -4,14 +4,16 @@ const sound = new Audio();
 
 sound.src = Click;
 
-const Button = ({ name, logo }) => {
-  const handleClick = () => {
+const Button = ({ name, logo, type }) => {
+  const handleClick = (e) => {
+    e.preventDefault();
     sound.play();
   };
 
   return (
     <div>
       <button
+        type="button"
         onClick={handleClick}
         className={`group border-none p-0 cursor-pointer rounded-lg ${
           name == "Google" ? "bg-blue-700" : "bg-slate-800"
@@ -20,7 +22,7 @@ const Button = ({ name, logo }) => {
         } transition-all duration-300 ease-in-out outline-offset-4`}
       >
         <span
-          className={`flex items-center group-active:-translate-y-[2px] py-[12px] px-[40px] text-xl ${
+          className={`flex items-center group-active:-translate-y-[2px] py-[12px] px-[40px] text-base ${
             name == "Google" ? "bg-blue-500" : "bg-slate-600"
           } ${
             name == "Google"
@@ -28,8 +30,7 @@ const Button = ({ name, logo }) => {
               : "group-hover:bg-slate-700"
           }   transition-all duration-300 ease-in-out  text-white/90 group-hover:text-white hover:-translate-y-[8px] -translate-y-[5px] rounded-lg font-Wotfard-Regular`}
         >
-          <img src={logo} alt={name} className="h-6 w-6 mr-2" /> Sign in with{" "}
-          {name}
+          <img src={logo} alt={name} className="h-5 w-5 mr-2" /> {name}
         </span>
       </button>
     </div>

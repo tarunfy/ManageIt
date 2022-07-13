@@ -37,6 +37,20 @@
   src: url(./assets/fonts/Wotfard-Thin.otf);
 }
 
+body {
+  background-color: #f2f0f0;
+}
+
+#shape {
+  top: 10rem;
+  left: 0rem;
+  background: url(./assets/images/shape.svg) no-repeat;
+  background-position: bottom left;
+  height: 100%;
+  width: 50%;
+  z-index: 40;
+}
+
 #blurry-gradient {
   position: fixed;
   top: -20%;
