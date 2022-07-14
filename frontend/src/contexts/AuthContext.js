@@ -37,9 +37,14 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signInWithAuthProvider = async (provider) => {
-    const { user, error } = await supabase.auth.signIn({
-      provider,
-    });
+    const { user, error } = await supabase.auth.signIn(
+      {
+        provider,
+      },
+      {
+        redirectTo: "http://localhost:3000/dashboard",
+      }
+    );
 
     setCurrentUser(user);
 

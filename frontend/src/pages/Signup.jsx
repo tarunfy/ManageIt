@@ -17,7 +17,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const { signUpWithEmail } = useContext(AuthContext);
+  const { signUpWithEmail, signInWithAuthProvider } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,6 +49,30 @@ const Signup = () => {
     setEmail("");
     setPassword("");
     setConfirmPassword("");
+    nProgress.done();
+  };
+
+  const handleGitHubSignIn = async () => {
+    nProgress.start();
+    const res = await signInWithAuthProvider("github");
+
+    if (res.error) {
+      toast.error(`😦 ${res.error.message}`);
+      nProgress.done();
+      return;
+    }
+    nProgress.done();
+  };
+
+  const handleGoogleSignIn = async () => {
+    nProgress.start();
+    const res = await signInWithAuthProvider("google");
+
+    if (res.error) {
+      toast.error(`😦 ${res.error.message}`);
+      nProgress.done();
+      return;
+    }
     nProgress.done();
   };
 
@@ -134,8 +158,16 @@ const Signup = () => {
             </div>
 
             <div className="flex items-center space-x-2 justify-evenly">
-              <Button name="GitHub" logo={github} type="signup" />
-              <Button name="Google" logo={google} type="signup" />
+              <Button
+                name="GitHub"
+                logo={github}
+                handleSignin={handleGitHubSignIn}
+              />
+              <Button
+                name="Google"
+                logo={google}
+                handleSignin={handleGoogleSignIn}
+              />
             </div>
 
             <p className="text-base font-Wotfard-Regular text-center">

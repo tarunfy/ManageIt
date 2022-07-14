@@ -2,7 +2,8 @@ import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 
 const Dashboard = () => {
-  const { signOut } = useContext(AuthContext);
+  const { signOut, currentUser } = useContext(AuthContext);
+  console.log(currentUser);
 
   return (
     <div className="h-screen flex justify-center items-center">

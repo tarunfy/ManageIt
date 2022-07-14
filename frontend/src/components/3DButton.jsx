@@ -4,9 +4,10 @@ const sound = new Audio();
 
 sound.src = Click;
 
-const Button = ({ name, logo }) => {
+const Button = ({ name, logo, handleSignin }) => {
   const handleClick = (e) => {
     e.preventDefault();
+    handleSignin();
     sound.play();
   };
 
