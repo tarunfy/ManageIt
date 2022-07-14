@@ -74,7 +74,7 @@ const Login = () => {
         </div>
 
         <div className="flex flex-col items-center justify-center h-full z-30">
-          <form className="px-10 py-6 bg-white  shadow-custom  rounded-lg space-y-4 w-full">
+          <form className="px-10 py-6 bg-white shadow-custom  rounded-lg space-y-4 w-full">
             <div>
               <img src={logo} alt="logo" className="mx-auto my-0 h-20 w-20" />
               <h1 className="text-[2.5rem] text-primary-700 text-center font-Wotfard-Medium">
