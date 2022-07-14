@@ -16,17 +16,17 @@ const Button = ({ name, logo }) => {
         type="button"
         onClick={handleClick}
         className={`group border-none p-0 cursor-pointer rounded-lg ${
-          name == "Google" ? "bg-blue-700" : "bg-slate-800"
+          name == "Google" ? "bg-slate-400" : "bg-slate-800"
         } ${
-          name == "Google" ? "hover:bg-blue-800" : "hover:bg-slate-900"
+          name == "Google" ? "hover:bg-slate-500" : "hover:bg-slate-900"
         } transition-all duration-300 ease-in-out outline-offset-4`}
       >
         <span
           className={`flex items-center group-active:-translate-y-[2px] py-[12px] px-[40px] text-base ${
-            name == "Google" ? "bg-blue-500" : "bg-slate-600"
+            name == "Google" ? "bg-stone-100" : "bg-slate-600"
           } ${
             name == "Google"
-              ? "group-hover:bg-blue-600"
+              ? "group-hover:bg-slate-50 text-slate-600 group-hover:text-slate-900"
               : "group-hover:bg-slate-700"
           }   transition-all duration-300 ease-in-out  text-white/90 group-hover:text-white hover:-translate-y-[8px] -translate-y-[5px] rounded-lg font-Wotfard-Regular`}
         >
