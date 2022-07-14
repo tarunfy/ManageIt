@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,13 +17,15 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const { signUpWithEmail } = useContext(AuthContext);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     nProgress.start();
+
     if (password.length < 8) {
       toast.error("🫤 Password should be at least 8 characters long");
       nProgress.done();
-
       return;
     }
     if (password !== confirmPassword) {
@@ -34,7 +37,15 @@ const Signup = () => {
       email: email.trim(),
       password: password.trim(),
     };
-    console.log(userData);
+
+    const res = await signUpWithEmail(userData);
+
+    if (res.error) {
+      toast.error(`😦 ${res.error.message}`);
+      nProgress.done();
+      return;
+    }
+
     setEmail("");
     setPassword("");
     setConfirmPassword("");

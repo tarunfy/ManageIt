@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { AuthContext } from "./contexts/AuthContext";
 import {
   BrowserRouter as Router,
   Routes,
@@ -11,21 +13,29 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
-import { useState } from "react";
 
 const App = () => {
-  const [user, setUser] = useState(true);
+  const { currentUser } = useContext(AuthContext);
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/"
+          element={!currentUser ? <Home /> : <Navigate to="/dashboard" />}
+        />
+        <Route
+          path="/signup"
+          element={!currentUser ? <Signup /> : <Navigate to="/dashboard" />}
+        />
+        <Route
+          path="/login"
+          element={!currentUser ? <Login /> : <Navigate to="/dashboard" />}
+        />
         <Route path="*" element={<NotFound />} />
         <Route
           path="/dashboard"
-          element={user ? <Dashboard /> : <Navigate to="/login" />}
+          element={currentUser ? <Dashboard /> : <Navigate to="/login" />}
         />
       </Routes>
     </Router>

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,14 +16,23 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const { signInWithEmail } = useContext(AuthContext);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     nProgress.start();
     const userData = {
       email: email.trim(),
       password: password.trim(),
     };
-    console.log(userData);
+
+    const res = await signInWithEmail(userData);
+
+    if (res.error) {
+      toast.error(`😦 ${res.error.message}`);
+      nProgress.done();
+      return;
+    }
     setEmail("");
     setPassword("");
     nProgress.done();
