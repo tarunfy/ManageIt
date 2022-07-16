@@ -24,10 +24,10 @@ const Button = ({ name, logo, handleSignin }) => {
       >
         <span
           className={`flex items-center group-active:-translate-y-[2px] py-[12px] px-[40px] text-base ${
-            name == "Google" ? "bg-stone-100" : "bg-slate-600"
+            name == "Google" ? "bg-stone-200" : "bg-slate-600"
           } ${
             name == "Google"
-              ? "group-hover:bg-slate-50 text-slate-600 group-hover:text-slate-900"
+              ? "group-hover:bg-slate-100 text-slate-600 group-hover:text-slate-900"
               : "group-hover:bg-slate-700"
           }   transition-all duration-300 ease-in-out  text-white/90 group-hover:text-white hover:-translate-y-[8px] -translate-y-[5px] rounded-lg font-Wotfard-Regular`}
         >
