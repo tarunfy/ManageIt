@@ -17,7 +17,7 @@ const ViewProjectModal = () => {
   return (
     <>
       <Button
-        className="!bg-transparent !border-[2px] !text-slate-900 !border-primary-500 font-Wotfard-Regular hover:!bg-primary-500 hover:!text-white"
+        className="!bg-primary-600 !text-white font-Wotfard-Regular "
         onClick={onOpen}
       >
         View details

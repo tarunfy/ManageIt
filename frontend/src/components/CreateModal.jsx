@@ -17,6 +17,7 @@ const CreateModal = () => {
   return (
     <>
       <Button
+        size="md"
         className="font-Wotfard-Medium !bg-primary-600 hover:!bg-primary-500 text-white"
         onClick={onOpen}
       >

@@ -12,12 +12,13 @@ const Dashboard = () => {
       <div className="h-screen max-w-[1000px] mx-auto bg-[#fcfcfc]">
         <div className="mb-10  w-full py-10 flex items-center justify-between">
           <h1 className="font-Wotfard-Bold text-gray-900 text-6xl">
-            All Projects(2)
+            All Projects (3)
           </h1>
           <div className="space-x-4">
             <CreateModal />
 
             <Button
+              size="md"
               onClick={signOut}
               className="font-Wotfard-Medium !text-gray-800"
             >
@@ -27,6 +28,7 @@ const Dashboard = () => {
         </div>
 
         <div className="w-full grid grid-cols-3 gap-4">
+          <Card />
           <Card />
           <Card />
         </div>

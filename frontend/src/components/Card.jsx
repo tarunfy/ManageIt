@@ -14,7 +14,7 @@ const truncate = (string, n) =>
 
 const Card = () => {
   return (
-    <div className="px-4 py-2 border rounded-md space-y-8 bg-white">
+    <div className="px-4 py-2 border-[2px] hover:shadow-xl shadow-md transition-all hover:rotate-1  duration-150 ease-linear border-primary-500 rounded-md space-y-8 bg-white">
       <div className="space-y-2">
         <h1 className="text-3xl font-Wotfard-Bold">Planify</h1>
         <p className=" text-base font-Wotfard-Regular">
