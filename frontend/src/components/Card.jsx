@@ -1,5 +1,5 @@
 const Card = () => {
-  return <div>Card</div>;
+  return <div></div>;
 };
 
 export default Card;

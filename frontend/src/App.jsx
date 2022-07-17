@@ -14,28 +14,23 @@ import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
 
-const App = () => {
-  const { currentUser } = useContext(AuthContext);
+import ProtectedRoute from "./components/ProtectedRoute";
 
+const App = () => {
   return (
     <Router>
       <Routes>
-        <Route
-          path="/"
-          element={!currentUser ? <Home /> : <Navigate to="/dashboard" />}
-        />
-        <Route
-          path="/signup"
-          element={!currentUser ? <Signup /> : <Navigate to="/dashboard" />}
-        />
-        <Route
-          path="/login"
-          element={!currentUser ? <Login /> : <Navigate to="/dashboard" />}
-        />
+        <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
         <Route
           path="/dashboard"
-          element={currentUser ? <Dashboard /> : <Navigate to="/login" />}
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
         />
       </Routes>
     </Router>

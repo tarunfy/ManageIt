@@ -5,8 +5,7 @@ import CreateModal from "../components/CreateModal";
 import { Button } from "@chakra-ui/react";
 
 const Dashboard = () => {
-  const { signOut, currentUser } = useContext(AuthContext);
-  console.log(currentUser);
+  const { signOut } = useContext(AuthContext);
 
   return (
     <div className="h-screen max-w-[1000px] mx-auto">
@@ -19,7 +18,7 @@ const Dashboard = () => {
 
           <Button
             onClick={signOut}
-            className="font-Wotfard-Medium !text-gray-800 "
+            className="font-Wotfard-Medium !text-gray-800"
           >
             Logout
           </Button>

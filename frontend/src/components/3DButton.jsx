@@ -27,9 +27,9 @@ const Button = ({ name, logo, handleSignin }) => {
             name == "Google" ? "bg-stone-200" : "bg-slate-600"
           } ${
             name == "Google"
-              ? "group-hover:bg-slate-100 text-slate-600 group-hover:text-slate-900"
-              : "group-hover:bg-slate-700"
-          }   transition-all duration-300 ease-in-out  text-white/90 group-hover:text-white hover:-translate-y-[8px] -translate-y-[5px] rounded-lg font-Wotfard-Regular`}
+              ? "group-hover:bg-slate-100 text-slate-700/90"
+              : "group-hover:bg-slate-700 text-white/90"
+          }   transition-all duration-300 ease-in-out   hover:-translate-y-[8px] -translate-y-[5px] rounded-lg font-Wotfard-Regular`}
         >
           <img src={logo} alt={name} className="h-5 w-5 mr-2" /> {name}
         </span>

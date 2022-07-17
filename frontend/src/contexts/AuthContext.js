@@ -1,3 +1,4 @@
+import { Center, Spinner } from "@chakra-ui/react";
 import { createContext, useEffect, useState } from "react";
 import { supabase } from "../utils/auth";
 
@@ -5,39 +6,44 @@ export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(supabase.auth.user());
+  const [isFetchingUser, setIsFetchingUser] = useState(false);
 
   useEffect(() => {
     supabase.auth.onAuthStateChange((event, session) => {
+      setIsFetchingUser(true);
       setCurrentUser(session?.user);
     });
   }, []);
 
+  useEffect(() => {
+    setIsFetchingUser(false);
+  }, [currentUser]);
+
   const signUpWithEmail = async (creds) => {
-    const { user, error } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signUp({
       email: creds.email,
       password: creds.password,
     });
 
-    setCurrentUser(user);
     return {
       error: error ? error : null,
     };
   };
 
   const signInWithEmail = async (creds) => {
-    const { user, error } = await supabase.auth.signIn({
+    const { error } = await supabase.auth.signIn({
       email: creds.email,
       password: creds.password,
     });
 
-    setCurrentUser(user);
     return {
       error: error ? error : null,
     };
   };
 
   const signInWithAuthProvider = async (provider) => {
-    const { user, error } = await supabase.auth.signIn(
+    setIsFetchingUser(true);
+    const { error } = await supabase.auth.signIn(
       {
         provider,
       },
@@ -45,8 +51,6 @@ export const AuthProvider = ({ children }) => {
         redirectTo: "http://localhost:3000/dashboard",
       }
     );
-
-    setCurrentUser(user);
 
     return {
       error: error ? error : null,
@@ -60,9 +64,17 @@ export const AuthProvider = ({ children }) => {
     };
   };
 
+  if (isFetchingUser)
+    return (
+      <Center h="100vh" w="100vw">
+        <Spinner size="xl" />
+      </Center>
+    );
+
   return (
     <AuthContext.Provider
       value={{
+        isFetchingUser,
         currentUser,
         signOut,
         signInWithEmail,

@@ -1,13 +1,13 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import nProgress from "nprogress";
 //components
-import Button from "../components/3DButton";
+import Button3D from "../components/3DButton";
+import { Input, InputGroup, InputRightElement, Button } from "@chakra-ui/react";
 //images
-import Mike from "../assets/images/mike.png";
 import logo from "../assets/images/favicon.png";
 import github from "../assets/images/github.svg";
 import google from "../assets/images/google.svg";
@@ -16,8 +16,16 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [show, setShow] = useState(false);
 
-  const { signUpWithEmail, signInWithAuthProvider } = useContext(AuthContext);
+  const {
+    signUpWithEmail,
+    signInWithAuthProvider,
+    currentUser,
+    isFetchingUser,
+  } = useContext(AuthContext);
+
+  const handleClick = () => setShow(!show);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -76,19 +84,13 @@ const Signup = () => {
     nProgress.done();
   };
 
+  if (currentUser && !isFetchingUser) return <Navigate to="/dashboard" />;
+
   return (
     <>
-      <div className="flex h-screen space-x-20 w-full overflow-hidden bg-slate-100">
-        <div className="w-2/4 z-20" id="shape">
-          <img
-            src={Mike}
-            alt="shape"
-            className="h-[180vh] w-full -ml-20 object-cover z-20"
-          />
-        </div>
-
+      <div className="flex items-center justify-center h-screen space-x-20 w-full overflow-hidden bg-slate-100">
         <div className="flex flex-col items-center justify-center h-full z-30">
-          <form className="px-10 py-6 bg-white  shadow-custom  rounded-lg space-y-4 w-full">
+          <form className="px-10 py-6 bg-white shadow-custom  rounded-lg space-y-4 w-full">
             <div>
               <img src={logo} alt="logo" className="mx-auto my-0 h-20 w-20" />
               <h1 className="text-[2.5rem] text-primary-700 text-center font-Wotfard-Medium">
@@ -96,60 +98,74 @@ const Signup = () => {
               </h1>
             </div>
             <div className="flex flex-col items-start space-y-1">
-              <label htmlFor="email" className="font-Wotfard-Medium text-base">
+              <label htmlFor="email" className="font-Wotfard-Regular text-base">
                 Email
               </label>
-              <input
+              <Input
+                className="font-Wotfard-Medium"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 autoComplete="off"
                 id="email"
-                className="bg-slate-100 border-[1px] border-slate-200 text-base font-Wotfard-Regular p-2 w-full focus:outline-none rounded-md"
               />
             </div>
             <div className="flex flex-col items-start space-y-1">
               <label
                 htmlFor="password"
-                className="font-Wotfard-Medium text-base"
+                className="font-Wotfard-Regular text-base"
               >
                 Password
                 <span className="text-xs font-Wotfard-Light block">
                   (at least 8 characters)
                 </span>
               </label>
-              <input
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                type="password"
-                id="password"
-                className="bg-slate-100  text-base  p-2 w-full  rounded-md border-[1px] border-slate-200 focus:outline-none"
-              />
+              <InputGroup size="md">
+                <Input
+                  id="password"
+                  pr="4.5rem"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="font-Wotfard-Medium"
+                  type={show ? "text" : "password"}
+                />
+                <InputRightElement width="4.5rem">
+                  <Button
+                    className="font-Wotfard-Regular"
+                    h="1.75rem"
+                    size="sm"
+                    onClick={handleClick}
+                  >
+                    {show ? "Hide" : "Show"}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
             </div>
             <div className="flex flex-col items-start space-y-1">
               <label
                 htmlFor="confirm_password"
-                className="font-Wotfard-Medium text-base"
+                className="font-Wotfard-Regular text-base"
               >
                 Confirm password
               </label>
-              <input
+              <Input
+                id="confirm_password"
+                pr="4.5rem"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                type="password"
-                id="confirm_password"
-                className="bg-slate-100 text-base  p-2 w-full rounded-md border-[1px] border-slate-200 focus:outline-none"
+                className="font-Wotfard-Medium"
+                type={show ? "text" : "password"}
               />
             </div>
 
-            <button
+            <Button
               type="submit"
               disabled={!email || !password || !confirmPassword}
+              className="font-Wotfard-Medium !bg-primary-600 hover:!bg-primary-500 text-white"
               onClick={handleSubmit}
-              className="px-4 py-2 disabled:bg-primary-400 disabled:text-white/50 disabled:cursor-not-allowed bg-primary-500 text-white font-Wotfard-Medium text-base rounded-md outline-offset-4 hover:shadow-primary-300 disabled:shadow-none hover:shadow-md transition-shadow"
             >
               Sign up
-            </button>
+            </Button>
 
             <div className="w-full flex  items-center justify-center">
               <div className="h-[1px] w-2/4 bg-slate-400"></div>
@@ -158,12 +174,12 @@ const Signup = () => {
             </div>
 
             <div className="flex items-center space-x-2 justify-evenly">
-              <Button
+              <Button3D
                 name="GitHub"
                 logo={github}
                 handleSignin={handleGitHubSignIn}
               />
-              <Button
+              <Button3D
                 name="Google"
                 logo={google}
                 handleSignin={handleGoogleSignIn}
