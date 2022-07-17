@@ -1,4 +1,4 @@
-import { ArrowForwardIcon } from "@chakra-ui/icons";
+import { ArrowForwardIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import { IconButton, createIcon } from "@chakra-ui/react";
 import ViewProjectModal from "./ViewProjectModal";
 
@@ -14,9 +14,23 @@ const truncate = (string, n) =>
 
 const Card = () => {
   return (
-    <div className="px-4 py-2 border-[2px] hover:shadow-xl shadow-md transition-all hover:rotate-1  duration-150 ease-linear border-primary-500 rounded-md space-y-8 bg-white">
+    <div className="px-4 py-2 border-[2px] hover:shadow-xl shadow-md transition-all hover:-rotate-1  duration-150 ease-linear border-primary-500 rounded-md space-y-8 bg-white">
       <div className="space-y-2">
-        <h1 className="text-3xl font-Wotfard-Bold">Planify</h1>
+        <div className="flex items-center justify-between">
+          <h1 className="text-3xl font-Wotfard-Bold">Planify</h1>
+          <div className="flex items-center space-x-2">
+            <IconButton
+              size="sm"
+              aria-label="Delete"
+              icon={<EditIcon w={4} h={4} />}
+            />
+            <IconButton
+              size="sm"
+              aria-label="Delete"
+              icon={<DeleteIcon w={4} h={4} />}
+            />
+          </div>
+        </div>
         <p className=" text-base font-Wotfard-Regular">
           {truncate(
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sintnesciunt quibusdam similique praesentium, iusto doloribus aspernatur utblanditiis veritatis.",
