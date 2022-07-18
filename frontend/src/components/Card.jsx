@@ -15,7 +15,7 @@ const truncate = (string, n) =>
 
 const Card = () => {
   return (
-    <div className="px-4 py-2 border-[2px] hover:shadow-xl shadow-md transition-all hover:-rotate-1  duration-150 ease-linear border-primary-500 rounded-md space-y-8 bg-white">
+    <div className="px-4 py-2 border-[2px] hover:shadow-xl shadow-md transition-all hover:-translate-y-1  duration-150 ease-linear border-primary-500 rounded-md space-y-5 bg-white">
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <h1 className="text-3xl font-Wotfard-Bold">Planify</h1>
@@ -31,28 +31,12 @@ const Card = () => {
         <p className=" text-base font-Wotfard-Regular">
           {truncate(
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sintnesciunt quibusdam similique praesentium, iusto doloribus aspernatur utblanditiis veritatis.",
-            60
+            80
           )}
         </p>
       </div>
-      <div className="flex items-center justify-between ">
-        <div className="flex space-x-2 items-center">
-          <a href="https://www.google.com" target="_blank">
-            <IconButton
-              aria-label="Live demo"
-              icon={<ArrowForwardIcon w={5} h={5} />}
-            />
-          </a>
 
-          <a href="https://www.google.com" target="_blank">
-            <IconButton
-              aria-label="GitHub repo"
-              icon={<GithubIcon w={5} h={5} />}
-            />
-          </a>
-        </div>
-        <ViewProjectModal />
-      </div>
+      <ViewProjectModal />
     </div>
   );
 };
