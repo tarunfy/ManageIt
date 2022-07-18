@@ -25,7 +25,7 @@ const ProjectDetailsModal = () => {
   return (
     <>
       <Button
-        className="!bg-primary-600 !text-white font-Wotfard-Regular "
+        className="!bg-primary-600 hover:!bg-primary-500 !text-white font-Wotfard-Regular"
         onClick={onOpen}
       >
         View details
