@@ -1,6 +1,7 @@
-import { ArrowForwardIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import DeleteConfirmationModal from "./DeleteConfirmationModal";
+import { ArrowForwardIcon, EditIcon } from "@chakra-ui/icons";
 import { IconButton, createIcon } from "@chakra-ui/react";
-import ViewProjectModal from "./ViewProjectModal";
+import ViewProjectModal from "./ProjectDetailsModal";
 
 const GithubIcon = createIcon({
   viewBox: "0 0 58 56",
@@ -24,11 +25,7 @@ const Card = () => {
               aria-label="Delete"
               icon={<EditIcon w={4} h={4} />}
             />
-            <IconButton
-              size="sm"
-              aria-label="Delete"
-              icon={<DeleteIcon w={4} h={4} />}
-            />
+            <DeleteConfirmationModal />
           </div>
         </div>
         <p className=" text-base font-Wotfard-Regular">

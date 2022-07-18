@@ -12,7 +12,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-const ViewProjectModal = () => {
+const ProjectDetailsModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -45,4 +45,4 @@ const ViewProjectModal = () => {
   );
 };
 
-export default ViewProjectModal;
+export default ProjectDetailsModal;
