@@ -9,26 +9,27 @@ import {
   Button,
   Input,
   Textarea,
+  IconButton,
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
+import { EditIcon } from "@chakra-ui/icons";
 
-const CreateModal = () => {
+const UpdateProjectModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Button
-        size="md"
-        className="font-Wotfard-Medium !bg-primary-600 hover:!bg-primary-500 text-white"
+      <IconButton
+        size="sm"
         onClick={onOpen}
-      >
-        Add Project
-      </Button>
+        aria-label="Delete"
+        icon={<EditIcon w={4} h={4} />}
+      />
 
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay bg="none" backdropFilter="auto" backdropBlur="2px" />
         <ModalContent className="!max-w-[550px] !bg-zinc-50">
           <ModalHeader className="font-Wotfard-Medium !text-gray-800 !text-[1.9rem]">
-            Let's add a new Project
+            Update Planify
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
@@ -103,7 +104,7 @@ const CreateModal = () => {
               className="!bg-primary-600 font-Wotfard-Medium hover:!bg-primary-500 !text-white"
               variant="ghost"
             >
-              Add
+              Update
             </Button>
           </ModalFooter>
         </ModalContent>
@@ -112,4 +113,4 @@ const CreateModal = () => {
   );
 };
 
-export default CreateModal;
+export default UpdateProjectModal;
