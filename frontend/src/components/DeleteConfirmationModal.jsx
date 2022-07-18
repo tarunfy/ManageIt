@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { ProjectContext } from "../contexts/ProjectContext";
 import {
   Modal,
   ModalOverlay,
@@ -19,12 +20,15 @@ const sound = new Audio();
 
 sound.src = trash;
 
-const DeleteConfirmationModal = () => {
+const DeleteConfirmationModal = ({ projectData }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [projectName, setProjectName] = useState("");
 
-  const handleDelete = (e) => {
+  const { deleteProject } = useContext(ProjectContext);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    await deleteProject(projectData?._id);
     setProjectName("");
     sound.play();
     onClose();
@@ -42,7 +46,7 @@ const DeleteConfirmationModal = () => {
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay bg="none" backdropFilter="auto" backdropBlur="2px" />
         <ModalContent>
-          <form onSubmit={handleDelete}>
+          <form onSubmit={handleSubmit}>
             <ModalHeader className="font-Wotfard-Regular !text-gray-800">
               Are you absolutely sure?
             </ModalHeader>
@@ -51,13 +55,18 @@ const DeleteConfirmationModal = () => {
               <div className="space-y-3">
                 <p className="font-Wotfard-Regular">
                   This action cannot be undone. This will permanently delete the
-                  <span className="font-Wotfard-SemiBold"> Planify</span>{" "}
+                  <span className="font-Wotfard-SemiBold">
+                    {" "}
+                    {projectData?.name}
+                  </span>{" "}
                   project.
                 </p>
                 <p className="text-base font-Wotfard-Regular">
                   Please type{" "}
-                  <span className="font-Wotfard-SemiBold">Planify</span> to
-                  confirm.
+                  <span className="font-Wotfard-SemiBold">
+                    {projectData?.name}
+                  </span>{" "}
+                  to confirm.
                 </p>
                 <Input
                   type="text"
@@ -74,7 +83,7 @@ const DeleteConfirmationModal = () => {
               </Button>
               <Button
                 type="submit"
-                disabled={projectName !== "Planify"}
+                disabled={projectName !== projectData.name}
                 colorScheme="red"
                 className="font-Wotfard-Regular"
               >

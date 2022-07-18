@@ -1,3 +1,5 @@
+import { useContext, useState } from "react";
+import { ProjectContext } from "../contexts/ProjectContext";
 import {
   Modal,
   ModalOverlay,
@@ -14,7 +16,29 @@ import { useDisclosure } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 
 const CreateModal = () => {
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [repoLink, setRepoLink] = useState("");
+  const [liveDemo, setLiveDemo] = useState("");
+
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const { createProject } = useContext(ProjectContext);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await createProject({
+      name,
+      description,
+      repoLink,
+      liveDemo,
+    });
+    setName("");
+    setDescription("");
+    setLiveDemo("");
+    setRepoLink("");
+    onClose();
+  };
   return (
     <>
       <Button
@@ -28,12 +52,12 @@ const CreateModal = () => {
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay bg="none" backdropFilter="auto" backdropBlur="2px" />
         <ModalContent className="!max-w-[550px] !bg-zinc-50">
-          <ModalHeader className="font-Wotfard-Medium !text-gray-800 !text-[1.9rem]">
-            Let's create a new Project
-          </ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <form className="space-y-2">
+          <form onSubmit={handleSubmit}>
+            <ModalHeader className="font-Wotfard-Medium !text-gray-800 !text-[1.9rem]">
+              Let's create a new Project
+            </ModalHeader>
+            <ModalCloseButton />
+            <ModalBody className="space-y-2">
               <div className="flex items-center space-x-4">
                 <div className="w-full space-y-1 flex flex-col items-start">
                   <label
@@ -43,6 +67,8 @@ const CreateModal = () => {
                     Name
                   </label>
                   <Input
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     required
                     className="font-Wotfard-Medium"
                     id="project-name"
@@ -57,6 +83,8 @@ const CreateModal = () => {
                     Git Repository
                   </label>
                   <Input
+                    value={repoLink}
+                    onChange={(e) => setRepoLink(e.target.value)}
                     required
                     className="font-Wotfard-Medium"
                     id="project-repo"
@@ -71,6 +99,8 @@ const CreateModal = () => {
                   Live link
                 </label>
                 <Input
+                  value={liveDemo}
+                  onChange={(e) => setLiveDemo(e.target.value)}
                   required
                   className="font-Wotfard-Medium"
                   id="project-demo"
@@ -84,29 +114,32 @@ const CreateModal = () => {
                   Description
                 </label>
                 <Textarea
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
                   required
                   className="font-Wotfard-Medium"
                   id="project-desc"
                 />
               </div>
-            </form>
-          </ModalBody>
+            </ModalBody>
 
-          <ModalFooter>
-            <Button
-              mr={3}
-              onClick={onClose}
-              className="!text-gray-800 font-Wotfard-Regular"
-            >
-              Close
-            </Button>
-            <Button
-              className="!bg-primary-600 font-Wotfard-Regular hover:!bg-primary-500 !text-white"
-              variant="ghost"
-            >
-              Create
-            </Button>
-          </ModalFooter>
+            <ModalFooter>
+              <Button
+                mr={3}
+                onClick={onClose}
+                className="!text-gray-800 font-Wotfard-Regular"
+              >
+                Close
+              </Button>
+              <Button
+                disabled={!name || !liveDemo || !description || !repoLink}
+                type="submit"
+                className="!bg-primary-600 font-Wotfard-Regular hover:!bg-primary-500 !text-white"
+              >
+                Create
+              </Button>
+            </ModalFooter>
+          </form>
         </ModalContent>
       </Modal>
     </>

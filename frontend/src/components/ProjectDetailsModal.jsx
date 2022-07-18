@@ -12,6 +12,7 @@ import {
   createIcon,
 } from "@chakra-ui/react";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
+import moment from "moment";
 
 const GithubIcon = createIcon({
   viewBox: "0 0 58 56",
@@ -20,7 +21,7 @@ const GithubIcon = createIcon({
   ),
 });
 
-const ProjectDetailsModal = () => {
+const ProjectDetailsModal = ({ projectData }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -35,29 +36,28 @@ const ProjectDetailsModal = () => {
         <ModalOverlay bg="none" backdropFilter="auto" backdropBlur="2px" />
         <ModalContent>
           <ModalHeader className="!font-Wotfard-Medium !text-3xl !text-gray-800">
-            Planify
+            {projectData?.name}
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <div className="space-y-4">
               <p className="font-Wotfard-Regular text-gray-800">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab
-                recusandae perferendis autem odio non aliquid hic laboriosam
-                porro, impedit quasi iusto ad voluptates nostrum nam
-                exercitationem fugiat excepturi quam amet.
+                {projectData?.description}
               </p>
               <p className="font-Wotfard-Regular text-gray-800">
                 Created on:{" "}
-                <span className="font-Wotfard-Medium">21/07/2022</span>
+                <span className="font-Wotfard-Medium">
+                  {moment(projectData?.createdAt).startOf("ss").fromNow()}
+                </span>
               </p>
               <div className="flex space-x-2 items-center">
-                <a href="https://www.google.com" target="_blank">
+                <a href={projectData?.liveDemo} target="_blank">
                   <IconButton
                     aria-label="Live demo"
                     icon={<ArrowForwardIcon w={5} h={5} />}
                   />
                 </a>
-                <a href="https://www.google.com" target="_blank">
+                <a href={projectData?.repoLink} target="_blank">
                   <IconButton
                     aria-label="GitHub repo"
                     icon={<GithubIcon w={5} h={5} />}

@@ -1,3 +1,5 @@
+import { useState, useContext } from "react";
+import { ProjectContext } from "../contexts/ProjectContext";
 import {
   Modal,
   ModalOverlay,
@@ -14,8 +16,34 @@ import {
 import { useDisclosure } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 
-const UpdateProjectModal = () => {
+const UpdateProjectModal = ({ projectData }) => {
+  const [name, setName] = useState(projectData.name);
+  const [description, setDescription] = useState(projectData.description);
+  const [repoLink, setRepoLink] = useState(projectData.repoLink);
+  const [liveDemo, setLiveDemo] = useState(projectData.liveDemo);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const { updateProject } = useContext(ProjectContext);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await updateProject({
+      name,
+      description,
+      repoLink,
+      liveDemo,
+      id: projectData._id,
+    });
+
+    setName("");
+    setDescription("");
+    setLiveDemo("");
+    setRepoLink("");
+
+    onClose();
+  };
+
   return (
     <>
       <IconButton
@@ -28,13 +56,13 @@ const UpdateProjectModal = () => {
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay bg="none" backdropFilter="auto" backdropBlur="2px" />
         <ModalContent className="!max-w-[550px] !bg-zinc-50">
-          <ModalHeader className="font-Wotfard-Medium !text-gray-800 !text-[1.9rem]">
-            Update Planify
-          </ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <form className="space-y-2">
-              <div className="flex items-center space-x-4">
+          <form onSubmit={handleSubmit}>
+            <ModalHeader className="font-Wotfard-Medium !text-gray-800 !text-[1.9rem]">
+              Update {projectData.name}
+            </ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <div className="flex items-center space-y-2 space-x-4">
                 <div className="w-full space-y-1 flex flex-col items-start">
                   <label
                     htmlFor="project-name"
@@ -43,6 +71,8 @@ const UpdateProjectModal = () => {
                     Name
                   </label>
                   <Input
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     required
                     className="font-Wotfard-Medium"
                     id="project-name"
@@ -57,6 +87,8 @@ const UpdateProjectModal = () => {
                     Git Repository
                   </label>
                   <Input
+                    value={repoLink}
+                    onChange={(e) => setRepoLink(e.target.value)}
                     required
                     className="font-Wotfard-Medium"
                     id="project-repo"
@@ -71,6 +103,8 @@ const UpdateProjectModal = () => {
                   Live link
                 </label>
                 <Input
+                  value={liveDemo}
+                  onChange={(e) => setLiveDemo(e.target.value)}
                   required
                   className="font-Wotfard-Medium"
                   id="project-demo"
@@ -84,29 +118,33 @@ const UpdateProjectModal = () => {
                   Description
                 </label>
                 <Textarea
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
                   required
                   className="font-Wotfard-Medium"
                   id="project-desc"
                 />
               </div>
-            </form>
-          </ModalBody>
+            </ModalBody>
 
-          <ModalFooter>
-            <Button
-              mr={3}
-              onClick={onClose}
-              className="!text-gray-800 font-Wotfard-Regular"
-            >
-              Close
-            </Button>
-            <Button
-              className="!bg-primary-600 font-Wotfard-Regular hover:!bg-primary-500 !text-white"
-              variant="ghost"
-            >
-              Update
-            </Button>
-          </ModalFooter>
+            <ModalFooter>
+              <Button
+                mr={3}
+                onClick={onClose}
+                className="!text-gray-800 font-Wotfard-Regular"
+              >
+                Close
+              </Button>
+              <Button
+                type="submit"
+                disabled={!name || !description || !repoLink || !liveDemo}
+                className="!bg-primary-600 font-Wotfard-Regular hover:!bg-primary-500 !text-white"
+                variant="ghost"
+              >
+                Update
+              </Button>
+            </ModalFooter>
+          </form>
         </ModalContent>
       </Modal>
     </>
