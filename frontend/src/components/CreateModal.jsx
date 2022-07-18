@@ -11,6 +11,7 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
+import { AddIcon } from "@chakra-ui/icons";
 
 const CreateModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -18,17 +19,17 @@ const CreateModal = () => {
     <>
       <Button
         size="md"
-        className="font-Wotfard-Medium !bg-primary-600 hover:!bg-primary-500 text-white"
+        className="font-Wotfard-Regular !bg-primary-600 hover:!bg-primary-500 text-white"
         onClick={onOpen}
       >
-        Add Project
+        <AddIcon className="mr-2" /> Create
       </Button>
 
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay bg="none" backdropFilter="auto" backdropBlur="2px" />
         <ModalContent className="!max-w-[550px] !bg-zinc-50">
           <ModalHeader className="font-Wotfard-Medium !text-gray-800 !text-[1.9rem]">
-            Let's add a new Project
+            Let's create a new Project
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
@@ -95,15 +96,15 @@ const CreateModal = () => {
             <Button
               mr={3}
               onClick={onClose}
-              className="!text-gray-800 font-Wotfard-Medium"
+              className="!text-gray-800 font-Wotfard-Regular"
             >
               Close
             </Button>
             <Button
-              className="!bg-primary-600 font-Wotfard-Medium hover:!bg-primary-500 !text-white"
+              className="!bg-primary-600 font-Wotfard-Regular hover:!bg-primary-500 !text-white"
               variant="ghost"
             >
-              Add
+              Create
             </Button>
           </ModalFooter>
         </ModalContent>

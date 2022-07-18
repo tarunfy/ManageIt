@@ -34,19 +34,19 @@ const ProjectDetailsModal = () => {
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay bg="none" backdropFilter="auto" backdropBlur="2px" />
         <ModalContent>
-          <ModalHeader className="!font-Wotfard-Medium !text-3xl">
+          <ModalHeader className="!font-Wotfard-Medium !text-3xl !text-gray-800">
             Planify
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <div className="space-y-4">
-              <p className="font-Wotfard-Regular">
+              <p className="font-Wotfard-Regular text-gray-800">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab
                 recusandae perferendis autem odio non aliquid hic laboriosam
                 porro, impedit quasi iusto ad voluptates nostrum nam
                 exercitationem fugiat excepturi quam amet.
               </p>
-              <p className="font-Wotfard-Regular">
+              <p className="font-Wotfard-Regular text-gray-800">
                 Created on:{" "}
                 <span className="font-Wotfard-Medium">21/07/2022</span>
               </p>
@@ -68,7 +68,12 @@ const ProjectDetailsModal = () => {
           </ModalBody>
 
           <ModalFooter>
-            <Button onClick={onClose}>Close</Button>
+            <Button
+              className="!text-gray-800 font-Wotfard-Regular"
+              onClick={onClose}
+            >
+              Close
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

@@ -93,7 +93,7 @@ const Signup = () => {
           <form className="px-10 py-6 bg-white shadow-custom  rounded-lg space-y-4 w-full">
             <div>
               <img src={logo} alt="logo" className="mx-auto my-0 h-20 w-20" />
-              <h1 className="text-[2.5rem] text-primary-700 text-center font-Wotfard-Medium">
+              <h1 className="text-[2.5rem] text-gray-800 text-center font-Wotfard-Medium">
                 Create your account
               </h1>
             </div>

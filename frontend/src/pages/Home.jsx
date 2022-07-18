@@ -18,7 +18,7 @@ const Home = () => {
           </p>
           <Link to="/signup">
             <Button
-              className="font-Wotfard-Medium !text-2xl !bg-primary-500 !text-white"
+              className="font-Wotfard-Regular !text-xl !bg-primary-500 !text-white"
               size="lg"
             >
               Get Started

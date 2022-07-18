@@ -43,7 +43,7 @@ const DeleteConfirmationModal = () => {
         <ModalOverlay bg="none" backdropFilter="auto" backdropBlur="2px" />
         <ModalContent>
           <form onSubmit={handleDelete}>
-            <ModalHeader className="font-Wotfard-Regular">
+            <ModalHeader className="font-Wotfard-Regular !text-gray-800">
               Are you absolutely sure?
             </ModalHeader>
             <ModalCloseButton />
@@ -69,13 +69,14 @@ const DeleteConfirmationModal = () => {
             </ModalBody>
 
             <ModalFooter>
-              <Button mr={3} onClick={onClose}>
+              <Button className="font-Wotfard-Regular" mr={3} onClick={onClose}>
                 Cancel
               </Button>
               <Button
                 type="submit"
                 disabled={projectName !== "Planify"}
                 colorScheme="red"
+                className="font-Wotfard-Regular"
               >
                 Delete
               </Button>

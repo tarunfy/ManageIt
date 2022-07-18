@@ -10,7 +10,7 @@ const Navbar = () => {
             ManageIt
           </h1>
           <Link to="/login" className="font-Wotfard-Regular text-xl">
-            <Button className="font-Wotfard-Medium !bg-gray-100 !text-primary-600">
+            <Button className="font-Wotfard-Medium !bg-gray-100 !text-gray-800">
               Login
             </Button>
           </Link>

@@ -96,12 +96,12 @@ const UpdateProjectModal = () => {
             <Button
               mr={3}
               onClick={onClose}
-              className="!text-gray-800 font-Wotfard-Medium"
+              className="!text-gray-800 font-Wotfard-Regular"
             >
               Close
             </Button>
             <Button
-              className="!bg-primary-600 font-Wotfard-Medium hover:!bg-primary-500 !text-white"
+              className="!bg-primary-600 font-Wotfard-Regular hover:!bg-primary-500 !text-white"
               variant="ghost"
             >
               Update
