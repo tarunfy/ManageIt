@@ -138,7 +138,7 @@ const UpdateProjectModal = ({ projectData }) => {
               <Button
                 type="submit"
                 disabled={!name || !description || !repoLink || !liveDemo}
-                className="!bg-primary-600 font-Wotfard-Regular hover:!bg-primary-500 !text-white"
+                className="!bg-primary-600 font-Wotfard-Regular hover:!bg-primary-500 !text-zinc-50"
                 variant="ghost"
               >
                 Update

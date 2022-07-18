@@ -43,7 +43,7 @@ const CreateModal = () => {
     <>
       <Button
         size="md"
-        className="font-Wotfard-Regular !bg-primary-600 hover:!bg-primary-500 text-white"
+        className="font-Wotfard-Regular !bg-primary-600 hover:!bg-primary-500 text-zinc-50"
         onClick={onOpen}
       >
         <AddIcon className="mr-2" /> Create
@@ -134,7 +134,7 @@ const CreateModal = () => {
               <Button
                 disabled={!name || !liveDemo || !description || !repoLink}
                 type="submit"
-                className="!bg-primary-600 font-Wotfard-Regular hover:!bg-primary-500 !text-white"
+                className="!bg-primary-600 font-Wotfard-Regular hover:!bg-primary-500 !text-zinc-50"
               >
                 Create
               </Button>

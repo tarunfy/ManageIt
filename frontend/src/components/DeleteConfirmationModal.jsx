@@ -45,7 +45,7 @@ const DeleteConfirmationModal = ({ projectData }) => {
 
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay bg="none" backdropFilter="auto" backdropBlur="2px" />
-        <ModalContent>
+        <ModalContent className="!bg-zinc-50">
           <form onSubmit={handleSubmit}>
             <ModalHeader className="font-Wotfard-Regular !text-gray-800">
               Are you absolutely sure?
@@ -85,7 +85,7 @@ const DeleteConfirmationModal = ({ projectData }) => {
                 type="submit"
                 disabled={projectName !== projectData.name}
                 colorScheme="red"
-                className="font-Wotfard-Regular"
+                className="font-Wotfard-Regular text-zinc-50"
               >
                 Delete
               </Button>

@@ -26,7 +26,7 @@ const ProjectDetailsModal = ({ projectData }) => {
   return (
     <>
       <Button
-        className="!bg-primary-600 hover:!bg-primary-500 !text-white font-Wotfard-Regular"
+        className="!bg-primary-600 hover:!bg-primary-500 !text-zinc-50 font-Wotfard-Regular"
         onClick={onOpen}
       >
         View details
@@ -34,7 +34,7 @@ const ProjectDetailsModal = ({ projectData }) => {
 
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay bg="none" backdropFilter="auto" backdropBlur="2px" />
-        <ModalContent>
+        <ModalContent className="!bg-zinc-50">
           <ModalHeader className="!font-Wotfard-Medium !text-3xl !text-gray-800">
             {projectData?.name}
           </ModalHeader>
