@@ -3,7 +3,8 @@ const ProjectModel = require("../models/Project");
 
 //get all projects:
 const getProjects = async (req, res) => {
-  const { userId } = req.body;
+  const { userId } = req.params;
+  console.log(userId);
   try {
     const projects = await ProjectModel.find({
       userId,
@@ -43,6 +44,7 @@ const getProject = async (req, res) => {
 //post a project:
 const addProject = async (req, res) => {
   const { name, description, repoLink, liveDemo, userId } = req.body;
+
   const emptyFields = [];
 
   if (!name) {

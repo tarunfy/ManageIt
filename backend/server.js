@@ -12,9 +12,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
   cors({
-    allowedHeaders: true,
-    credentials: true,
     origin: "http://localhost:3000",
+    credentials: true,
   })
 );
 app.use("/api/projects", ProjectRouter);

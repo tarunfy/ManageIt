@@ -21,6 +21,11 @@ const ProjectSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please give the repo link of your project"],
     },
+
+    userId: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,
