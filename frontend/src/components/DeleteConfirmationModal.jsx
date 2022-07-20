@@ -78,7 +78,14 @@ const DeleteConfirmationModal = ({ projectData }) => {
             </ModalBody>
 
             <ModalFooter>
-              <Button className="font-Wotfard-Regular" mr={3} onClick={onClose}>
+              <Button
+                className="font-Wotfard-Regular"
+                mr={3}
+                onClick={() => {
+                  onClose();
+                  setProjectName("");
+                }}
+              >
                 Cancel
               </Button>
               <Button
