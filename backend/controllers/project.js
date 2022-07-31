@@ -4,7 +4,7 @@ const ProjectModel = require("../models/Project");
 //get all projects:
 const getProjects = async (req, res) => {
   const { userId } = req.params;
-  console.log(userId);
+
   try {
     const projects = await ProjectModel.find({
       userId,
